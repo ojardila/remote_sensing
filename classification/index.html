@@ -223,178 +223,136 @@
         <figcaption style="text-align: left;">Validación visual de polígono de categor cultivos permanentes arbustivos. Se observa café con sombrío.</figcaption>
       </figure>
       <h2>Evaluación de la separabilidad espectral de las clases de interés</h2>
-      <p>Otras estadísticas de separación de clases consideran la distribución de valores alrededor de los centros de clase. Por ejemplo, la distancia de Mahalanobis (D2 Mahalanobis, 1936; Rao, 1948) se puede calcular como:</p>
-      <p>Again, in either environment, you can use any of the symbols and structures available in <span class="latex">L<span>a</span>T<span>e</span>X</span>; this section will just give a couple of examples of display equations in context. First, consider the equation, shown as an inline equation above:</p>
-
+      <p>Para evaluar la separabilidad de las clases se usó la distancia de Mahalanobis. Ya que acuerdo con lo que plantea (Wills, Napier-Munn, Wills, & Napier-Munn)<cite href="mahalanovis1">5</cite> "Otras estadísticas de separación de clases consideran la distribución de valores alrededor de los centros de clase. Por ejemplo, la distancia de Mahalanobis. La cuál se puede calcular como:" </p>
       <div class="equation">
-        <math>
-          <mtable>
-            <mtr>
-              <mtd>
-                <munder>
-                  <mi>lim</mi>
-                  <mrow>
-                    <mi>n</mi>
-                    <mo>&rarr;</mo>
-                    <mo>&infin;</mo>
-                  </mrow>
-                </munder>
-                <mi>x</mi>
-                <mo>=</mo>
-                <mn>0</mn>
-              </mtd>
-            </mtr>
-          </mtable>
-        </math>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mrow><msub><mrow><mi>d</mi></mrow><mrow><mrow><mi>p</mi></mrow></mrow></msub><mo>(</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>i</mi></mrow></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>j</mi></mrow></mrow></msub><mo>)</mo><mo>=</mo><msqrt><mrow><mrow><msup><mrow><mrow><mo>(</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>i</mi></mrow></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>k</mi></mrow></mrow></msub><mo>)</mo></mrow></mrow><mrow><mrow><mi>T</mi></mrow></mrow></msup><msup><mrow><mrow><mi>W</mi></mrow></mrow><mrow><mrow><mo>-</mo><mn>1</mn></mrow></mrow></msup><mo>(</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>i</mi></mrow></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>j</mi></mrow></mrow></msub><mo>)</mo></mrow></mrow></msqrt></mrow></math>
+
+      <p style="text-align:left;">Dónde: </p>
+
+      <p style="text-align:left;"><b>W-1 =</b> Es la inversa de la matriz de covarianza</p>
+      <p style="text-align:left;"><b>Lhaze =</b> y cada conjunto de valores de canal para píxeles individuales o clases en la imagen puede ser considerado como una matriz unidimensional, o vector, Xk</p>
+
       </div>
+<p>Las distancias de Mahalanobis entre clases fueron calculadas usando el Notebook <a href="notebooks/separability.html"> Separabilidad de Clases</a></p>
 
-      <p>Notice how it is formatted somewhat differently in the <strong>displaymath</strong> environment. Now, we’ll enter an unnumbered equation:</p>
+<table id="separability">
+  <caption>Distancia Mahalanobis entre clases</caption>
+  <thead>
+    <tr>
+      <th colspan="9"><b>Clases</b></th>
 
-      <div class="equation displaymath">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <mtable class="m-equation" displaystyle="true">
-            <mtr>
-              <mtd columnalign="left">
-                <mstyle displaystyle="true">
-                  <munderover>
-                    <mo>&sum;</mo>
-                    <mrow>
-                      <mi>i</mi>
-                      <mo>=</mo>
-                      <mn>0</mn>
-                    </mrow>
-                    <mo>&infin;</mo>
-                  </munderover>
-                </mstyle>
-                <mi>x</mi>
-                <mo>+</mo>
-                <mn>1</mn>
-              </mtd>
-            </mtr>
-          </mtable>
-        </math>
-      </div>
+    </tr>
+    <tr>
+      <th colspan="2"><b></b></th>
+      <th><b>1</b></th>
+      <th><b>2</b></th>
+      <th><b>3</b></th>
+      <th><b>4</b></th>
+      <th><b>5</b></th>
+      <th><b>6</b></th>
+      <th><b>7</b></th>
+    </tr>
+  </thead>
+  <tbody>
 
-      <p>and follow it with another numbered equation:</p>
+    <tr>
+      <td colspan="2">1</td>
 
-      <div class="equation">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <mtable class="m-equation" displaystyle="true">
-            <mtr>
-              <mtd columnalign="left">
-                <mstyle>
-                  <munderover>
-                    <mo>&sum;</mo>
-                    <mrow>
-                      <mi>i</mi>
-                      <mo>=</mo>
-                      <mn>0</mn>
-                    </mrow>
-                    <mo>&infin;</mo>
-                  </munderover>
-                </mstyle>
-                <msub>
-                  <mi>x</mi>
-                  <mi>i</mi>
-                </msub>
-                <mo>=</mo>
-                <msubsup>
-                  <mo>&int;</mo>
-                  <mn>0</mn>
-                  <mrow>
-                    <mi>&pi;</mi>
-                    <mo>+</mo>
-                    <mn>2</mn>
-                  </mrow>
-                </msubsup>
-                <mi>f</mi>
-              </mtd>
-            </mtr>
-          </mtable>
-        </math>
-      </div>
+      <td>0</td>
+      <td>3.42</td>
+      <td>3.20</td>
+      <td>2.95</td>
+      <td>3.46</td>
+      <td>3.45</td>
+      <td>3.38</td>
+    </tr>
+    <tr>
+      <td colspan="2">2</td>
 
-      <p>just to demonstrate <span class="latex">L<span>a</span>T<span>e</span>X</span>’s able handling of numbering.</p>
+      <td>3.42</td>
+      <td>0</td>
+      <td>2.90</td>
+      <td>3.23</td>
+      <td>3.45</td>
+      <td>3.45</td>
+      <td>3.19</td>
+    </tr>
+    <tr>
+      <td colspan="2">3</td>
 
-      <h2>Citations</h2>
+      <td>3.20</td>
+      <td>2.90</td>
+      <td>0</td>
+      <td>1.45</td>
+      <td>3.12</td>
+      <td>3.12</td>
+      <td>3.42</td>
+    </tr>
+    <tr>
+      <td colspan="2">4</td>
 
-      <p>Citations to articles <cites><cite href="#bowman93">1</cite><cite href="#braams91">2</cite><cite href="#clark91">3</cite><cite href="#herlihy93">4</cite></cites>, conference proceedings <cite href="#clark91">3</cite> or books <cites><cite href="#salas78">6</cite><cite href="#lamport86">5</cite></cites> listed in the Bibliography section of your article will occur throughout the text of your article. You should use BibTeX to automatically produce this bibliography; you simply need to insert one of several citation commands with a key of the item cited in the proper location in the <code>.tex</code> file <cite href="#lamport86">5</cite>. The key is a short reference you invent to uniquely identify each work; in this sample document, the key is the first author’s surname and a word from the title. This identifying key is included with each item in the <code>.bib</code> file for your article.</p>
+      <td>2.95</td>
+      <td>3.23</td>
+      <td>1.45</td>
+      <td>0</td>
+      <td>3.06</td>
+      <td>3.05</td>
+      <td>2.29</td>
+    </tr>
+    <tr>
+      <td colspan="2">5</td>
 
-      <p>The details of the construction of the <code>.bib</code> file are beyond the scope of this sample document, but more information can be found in the <em>Author’s Guide</em>, and exhaustive details in the <em><span class="latex">L<span>a</span>T<span>e</span>X</span> User’s Guide</em><cite href="#lamport86">5</cite>.</p>
+      <td>3.46</td>
+      <td>3.44</td>
+      <td>3.12</td>
+      <td>3.06</td>
+      <td>0</td>
+      <td>3.46</td>
+      <td>3.33</td>
+    </tr>
+    <tr>
+      <td colspan="2">6</td>
 
-      <p>This article shows only the plainest form of the citation command, using <code>\cite</code>. This is what is stipulated in the SIGS style specifications. No other citation format is endorsed.</p>
+      <td>3.46</td>
+      <td>3.44</td>
+      <td>3.12</td>
+      <td>3.05</td>
+      <td>3.46</td>
+      <td>0</td>
+      <td>3.33</td>
+    </tr>
+    <tr>
+      <td colspan="2">7</td>
 
-      <h2>Tables</h2>
+      <td>3.38</td>
+      <td>3.19</td>
+      <td>3.42</td>
+      <td>2.29</td>
+      <td>3.33</td>
+      <td>3.33</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p style="text-align:left;">Dónde: </p>
 
-      <p>Because tables cannot be split across pages, the best placement for them is typically the top of the page nearest their initial cite. To ensure this proper <q>floating</q> placement of tables, use the environment <strong>table</strong> to enclose the table’s contents and the table caption. The contents of the table itself must go in the <strong>tabular</strong> environment, to be aligned properly in rows and columns, with the desired horizontal and vertical rules. Again, detailed instructions on <strong>tabular</strong> material is found in the <em><span class="latex">L<span>a</span>T<span>e</span>X</span> User’s Guide</em>.</p>
+<p style="text-align:left;"><b>1 =</b>Lagunas, lagos y ciénagas naturales</p>
+<p style="text-align:left;"><b>2 =</b>Arbustal abierto</p>
+<p style="text-align:left;"><b>3 =</b>Cultivos permanentes arbustivos </p>
+<p style="text-align:left;"><b>4 =</b>Mosaico de cultivos, pastos y espacios naturales</p>
+<p style="text-align:left;"><b>5 =</b>Mosaico de pastos y cultivos</p>
+<p style="text-align:left;"><b>6 =</b>Tejido urbano continuo</p>
+<p style="text-align:left;"><b>7 =</b>Pastos limpios</p>
 
-      <p>Immediately following this sentence is the point at which <cite href="#tablefreq" class="table">1</cite> is included in the input file; compare the placement of the table here with the table in the printed dvi output of this document.</p>
+<p>Las clases que presentan mayor separabilidad son: Lagunas, lagos y ciénagas naturales con respecto a Mosaico de pastos y cultivos. Así mismo Mosaico de pastos y cultivos con Tejido urbano continuo con una distancia de 3.46.El par de clases que presenta menos separabilidad es  Cultivos permanentes arbustivos y Mosaico de cultivos, pastos y espacios naturales con una distancia de 1.45.</p>
 
-      <table id="tablefreq">
-        <caption>Frequency of Special Characters</caption>
-        <thead>
-          <tr>
-            <th>Non-English or Math</th>
-            <th>Frequency</th>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Ø</td>
-            <td>1 in 1,000</td>
-            <td>For Swedish names</td>
-          </tr>
-          <tr>
-            <td>π</td>
-            <td>1 in 5</td>
-            <td>Common in math</td>
-          </tr>
-          <tr>
-            <td>$</td>
-            <td>4 in 5</td>
-            <td>Used in business</td>
-          </tr>
-          <tr>
-            <td><math><msubsup><mi>Ψ</mi><mn>1</mn><mn>2</mn></msubsup></math></td>
-            <td>1 in 40,000</td>
-            <td>Unexplained usage</td>
-          </tr>
-        </tbody>
-      </table>
 
-      <p>To set a wider table, which takes up the whole width of the page’s live area, use the environment <strong>table*</strong> to enclose the table’s contents and the table caption. As with a single-column table, this wide table will <q>float</q> to a location deemed more desirable. Immediately following this sentence is the point at which <cite href="#table-comments" class="table">2</cite> is included in the input file; again, it is instructive to compare the placement of the table here with the table in the printed dvi output of this document.</p>
+      <h2>Selección del método de clasificación y algoritmo de decisión</h2>
 
-      <h2>Figures</h2>
+      <p>Se usó un método de clasificación supervisado. "El modelo de aprendizaje supervisado supone la disponibilidad de un maestro o supervisor que clasifica los ejemplos de entrenamiento en clases y utiliza el información sobre la clase de cada instancia de entrenamiento" (Sathya & Abraham)<cite href="supervised">6</cite></p>
+      <p>Se implementó el algoritmo Random Forest usando un paquete de software en lenguaje Python llamado SciKit Learn .</p>
 
-      <p>Like tables, figures cannot be split across pages; the best placement for them is typically the top or the bottom of the page nearest their initial cite. To ensure this proper <q>floating</q> placement of figures, use the environment <strong>figure</strong> to enclose the figure and its caption.</p>
-
-      <p>This sample document contains examples of <strong>.eps</strong> and <strong>.ps</strong> files to be displayable with <span class="latex">L<span>a</span>T<span>e</span>X</span>. More details on each of these is found in the <em>Author’s Guide</em>.</p>
-
-      <figure style="float: column-top;">
-        <svg style="width: 0.5in; height: 0.5in;">
-          <image xlink:href="./img/fly.svg"/>
-        </svg>
-        <figcaption style="text-align: left;">A sample black and white graphic (.eps format).</figcaption>
-      </figure>
-
-      <figure style="float: column-bottom;">
-        <svg style="width: 1in; height: 1in;">
-          <image width="100%" height="100%" xlink:href="./img/fly.svg"/>
-        </svg>
-        <figcaption style="text-align: left;">A sample black and white graphic (.eps format) that has been resized with the <code>epsfig</code> command.</figcaption>
-      </figure>
-
-      <p>As was the case with tables, you may want a figure that spans two columns. To do this, and still to ensure proper <q>floating</q> placement of tables, use the environment <strong>figure*</strong> to enclose the figure and its caption.</p>
-
-      <p>Note that either <strong>.ps</strong> or <strong>.eps</strong> formats are used; use the <code>\epsfig</code> or <code>\psfig</code> commands as appropriate for the different file types.</p>
-
-      <figure style="float: column-top next; margin-top: 0;">
-        <svg style="width: 0.75in; height: 0.75in; margin-bottom: 1em;">
-          <image width="100%" height="100%" xlink:href="./img/rosette.svg"/>
-        </svg>
-        <figcaption style="text-align: left;">A sample black and white graphic (.ps format) that has been resized with the <code>psfig</code> command.</figcaption>
-      </figure>
 
       <h2>Theorem-like Constructs</h2>
 
@@ -704,15 +662,16 @@
     </section>
 
     <section>
-      <h1>References</h1>
+      <h1>Referencias</h1>
 
       <ref id="ref1">Alcaldía de Socorro. Información general Municipio Socorro. Retrieved May 26, 2018, from http://www.socorro-santander.gov.co/informacion_general.shtml</ref>
       <ref id="chav1">Chávez, P. S. J. (1996). Image-based atmospheric corrections - revisited and improved. Photogrammetric Engineering and Remote Sensing, 62(9), 1025–1036. https://doi.org/0099-1112/96/6209-1025</ref>
       <ref id="rsr1">Planet. PlanetScope Relative Spectral Response. Retrieved from https://support.planet.com/hc/en-us/articles/360000552387-Do-you-provide-PlanetScope-Relative-Spectral-Response-RSR-curves-</ref>
       <ref id="esun1">Leutner, B. (2016). Landsat 8 Esun Values. Retrieved from https://bleutner.github.io/RStoolbox/r/2016/01/26/estimating-landsat-8-esun-values</ref>
+      <ref id="mahalanovis1">Wills, B. A., Napier-Munn, T., Wills, B. A., & Napier-Munn, T. (2005). 9 – Classification. Wills’ Mineral Processing Technology, 203–224. https://doi.org/10.1016/B978-075064450-1/50011-4</ref>
+      <ref id="supervised">Sathya, R., & Abraham, A. (2013). Comparison of Supervised and Unsupervised Learning Algorithms for Pattern Classification. International Journal of Advanced Research in Artificial Intelligence, 2(2), 34–38. https://doi.org/10.14569/IJARAI.2013.020206</ref>
 
       <ref id="ref2">IDEAM. (2015). Cobertura de la Tierra Metodología CORINE Land Cover adaptada para Colombia durante el periodo 2010-2012. Retrieved from http://geoapps.ideam.gov.co:8080/geonetwork/srv/es/main.home?uuid=506e6ae8-19f7-4588-b643-58746046e753</ref>
-
       <ref id="ref3">IDEAM. (2010). LEYENDA NACIONAL DE COBERTURAS DE LA TIERRA Metodología CORINE Land Cover Adaptada para Colombia Escala 1:100.000. Retrieved from http://siatac.co/c/document_library/get_file?uuid=a64629ad-2dbe-4e1e-a561-fc16b8037522&groupId=762</ref>
       <ref id="ref4">Horning, N., & Dubroff, N. (2004). Myths and misconceptions about remote sensing. Version 1.0., 16. Retrieved from http://biodiversityinformatics.amnh.org.</ref>
 
