@@ -90,22 +90,22 @@
     <article>
     <div class="abstract counter-skip">
       <h1>Abstract</h1>
-      <p>I'ts important to know accurate and reliable  information about land cover. It allows detecting the change and monitoring specific areas over time. In recent years, different classification algorithms have been studied for this work. In this article we intend to make a supervised classification with Random Forest algorithm. Describing used methods and analyzing results found. Planet constellation images with PlanetScope (3m spatial resolution) format are used in the processs.</p>
+      <p>I'ts important to know accurate and reliable  information about land cover. It allows detecting the change and monitoring specific areas over time. In recent years, different classification algorithms have been studied for this work. In this article we intend to make a supervised classification with Random Forest algorithm, describing used methods and analyzing results found. Planet constellation images with PlanetScope (3mts spatial resolution) format are used in the processs.</p>
       <h2>Keywords</h2>
       <p>Land use classification, Supervised Classification, Random Forest, PlanetScope, Land Cover.</p>
     </div>
 
     <h1>Introducción</h1>
     <section>
-      <p>Según Borràs et al., 2017, a lo largo de los últimos años ha aumentado el interés y la necesidad de disponer de una información de usos y coberturas del territorio fiable y actualizada, siendo numerosos los proyectos de carácter local, nacional e internacional cuyo objetivo es la creación y actualización de bases de datos de usos y ocupación del suelo.<cite href="intro1">1</cite> El uso del suelo ha sido importante para tareas como predicción del cambio en el uso del suelo, prevención de desastres naturales, administración del uso, protección del entorno, etc<cite href="intro2">2</cite></p>
-      <p>El objetivo de este trabajo es evaluar los resultados del uso de el algoritmo Random Forest para la clasificación de el uso del suelo en Socorro Santander, analizando la separabilidad de las clases que conforman los polígonos de entrenamiento.</p>
+      <p>Según Borràs et al., 2017, a lo largo de los últimos años ha aumentado el interés y la necesidad de disponer de una información de usos y coberturas del territorio fiable y actualizada, siendo numerosos los proyectos de carácter local, nacional e internacional cuyo objetivo es la creación y actualización de bases de datos de usos y ocupación del suelo.<cite href="intro1">1</cite> El uso ha sido importante para tareas como predicción del cambio, en la prevención de desastres naturales, administración, protección del entorno, etc<cite href="intro2">2</cite></p>
+      <p>El objetivo de este trabajo es evaluar los resultados del algoritmo Random Forest para la clasificación de las coberturas del suelo en Socorro Santander, evaluando la separabilidad de las clases que conforman los polígonos de entrenamiento.</p>
 
     </section>
 
     <section>
       <h1>Datos y métodos</h1>
       <h2>Localización</h2>
-      <p>Se encuentra a una altura de 1230 m.s.n.m. Se ubica con respecto al meridiano de Greenwich a 6º 28’ de latitud norte y 72º 16’ de longitud occidental con un área total de 122.1 Km2 Socorro es un municipio del departamento de Santander. Está localizado a 121 kilómetros de Bucaramanga. Limita al norte con los municipios de Cabrera y Pinchote; al Sur con Confines y Palmas del Socorro, al Occidente con Simacota y Palmar, y al Oriente con el Páramo.<em> Alcaldía de Socorro</em><cite href="#ref1">3</cite>.</p>
+      <p>Socorro es un municipio del departamento de Santander, se encuentra a una altura promedio de 1230 m.s.n.m, se ubica con respecto al meridiano de Greenwich a 6º 28’ de latitud norte y 72º 16’ de longitud occidental con un área total de 122.1 Km2, está localizado a 121 kilómetros de Bucaramanga y limita al norte con los municipios de Cabrera y Pinchote; al Sur con Confines y Palmas del Socorro, al Occidente con Simacota y Palmar, al Oriente con el Páramo.<em> Alcaldía de Socorro</em><cite href="#ref1">3</cite>.</p>
       <figure style="float: column-bottom;">
         <image style="width:500px;" src="./img/maps/localization.png"/>
 
@@ -113,23 +113,22 @@
       </figure>
       <h2>Fuente de datos y preprocesamiento</h2>
       <p>Se tomaron las imágenes con identificación 20171220_143931_1024, 20171220_143932_1024, 20171220_143933_1024, 20171220_143933_1024 del programa satelital <a href="https://planet.com">Planet</a>. Las imágenes son de tipo PlanetScope con una resolución espacial de 3 metros y con una fecha de adquisición del 20 de Diciembre del 2017 14:30:32 UTC.</p>
-      <p>Se realizó una corrección radiométrica para el cálculo de la reflectancia tipo DOS usando el modelo propuesto por <em>Chaves</em> <cite href="#chav1">4</cite></p>
+      <p>Se realiza una corrección radiométrica para el cálculo de la reflectancia tipo DOS usando el modelo propuesto por <em>Chaves</em> <cite href="#chav1">4</cite></p>
       <div class="equation">
         <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mrow><mi>R</mi><mi>E</mi><mi>F</mi><mo>=</mo><mfrac linethickness="1"><mrow><mrow><mi>&#960;</mi><mo>*</mo><mo>(</mo><mi>L</mi><mi>s</mi><mi>a</mi><mi>t</mi><mo>-</mo><mi>L</mi><mi>h</mi><mi>a</mi><mi>z</mi><mi>e</mi><mo>)</mo></mrow></mrow><mrow><mrow><msub><mrow><mi>E</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>*</mo><mi>C</mi><mi>o</mi><mi>s</mi><mo>(</mo><mi>T</mi><mi>z</mi><mo>)</mo><mo>+</mo><mi>E</mi><mi>S</mi><mi>u</mi><mi>n</mi><mi>&#955;</mi></mrow></mrow></mfrac></mrow></math>
 
-      <p style="text-align:left;">Dónde: </p>
 
       <p style="text-align:left;"><b>REF =</b> Reflectancia espectral de la superficie.</p>
       <p style="text-align:left;"><b>Lhaze =</b> Resplandor espectral atmosférico ascendente que se dispersa en la dirección de la pupila de entrada del sensor y dentro del campo de visión del sensor (W m-2 sr-I km-l), es decir, la radiancia de la trayectoria.</p>
       <p style="text-align:left;"><b>Eo =</b> Irradiancia solar espectral en una superficie perpendicular a los rayos del sol fuera de la atmósfera (W m-Z ym-I). Eo contiene el término de distancia Tierra-sol (D * D) incrustado y está en unidades astronómicas (los AUS son una función de la época del año y varían de aproximadamente 0.983 a 1.017).</p>
       <p style="text-align:left;"><b>TZ = </b>Ángulo de incidencia del flujo solar directo sobre la superficie de la Tierra (ángulo cenital solar, Thetaz).</p>
-      <p style="text-align:left;"><b>Esun =</b> irradiancia espectral descendente en la superficie debido al flujo solar disperso en la atmósfera (W m-z ym-I).</p>
+      <p style="text-align:left;"><b>ESunλ =</b> irradiancia espectral descendente en la superficie debido al flujo solar disperso en la atmósfera (W m-z ym-I).</p>
 
       </div>
-      <p>Se determinaron los valores Esun para cada una de las bandas de este tipo de imágenes usando los valores de la respuesta espectral relativa<cite href="rsr1">5</cite>y el algoritmo propuesto por Leutner, B (Creador de la librería RStoolbox)  para el cálculo de valores Esun para sensores Landsat 8 <cite href="esun1">6</cite></p>
+      <p>Se determinan los valores ESUNλ para cada una de las bandas de este tipo de imágenes usando los valores de la respuesta espectral relativa<cite href="rsr1">5</cite> y el algoritmo propuesto por Leutner, B (Creador de la librería RStoolbox)  para el cálculo de valores ESUNλ para sensores Landsat 8 <cite href="esun1">6</cite></p>
       <table id="esun">
-        <caption>Valores Esun calculados para imágenes PlanetScope (satelites "0f" o "10")</caption>
+        <caption>Valores ESUNλ calculados para imágenes PlanetScope (satelites "0f" o "10")</caption>
         <thead>
           <tr>
             <th colspan="4"><b>ESUNλ Unidades W/(m2 μm)</b></th>
@@ -154,8 +153,8 @@
         </tbody>
       </table>
       <h2>Selección de categorías de interés en la zona de estudio</h2>
-      <p>Tomando como base el conjunto de datos  <em>Cobertura de la Tierra Metodología CORINE Land Cover adaptada para Colombia durante el periodo 2010-2012 </em><cite href="#ref2">7</cite> se realizó un análisis visual, comparando   las coberturas definidas en el conjunto de  datos con la imagen actual. En este proceso se seleccionaron 7 clases de interés y se nombraron bajo la nomenclatura definida en la <em>Leyenda nacional de coberturas de la tierra</em><cite href="#ref3">8</cite>, ya que ésta es es el resultado de una metodología CORINE Land Cover (CLC) adaptada para Colombia.</p>
-      <p>Teniendo en cuenta lo que el autor Horning & Dubroff plantea <i> "si crea un mapa de cobertura terrestre con solo clases forestales y no forestales, la precisión de cada una de esas clases será mayor que si intenta dividir las clases forestales y no forestales en varias otras clases. Este es un concepto importante para comprender cuando se está desarrollando un sistema de clasificación para un mapa de cobertura terrestre."</i><cite href="#ref4">9</cite>. Se seleccionaron categorías con un nivel de detalle tres según lo planteado en la Leyenda nacional de coberturas.</p>
+      <p>Tomando como base el conjunto de datos  <em>Cobertura de la Tierra Metodología CORINE Land Cover adaptada para Colombia durante el periodo 2010-2012 </em><cite href="#ref2">7</cite> se realiza un análisis visual comparando   las coberturas definidas en el conjunto de  datos con la imagen actual. En este proceso se seleccionan 7 clases de interés y se etiquetaron bajo la nomenclatura definida en la <em>Leyenda nacional de coberturas de la tierra</em><cite href="#ref3">8</cite>, ya que es el resultado de una metodología CORINE Land Cover (CLC) adaptada para Colombia.</p>
+      <p>Teniendo en cuenta lo que los autores Horning & Dubroff plantean <i> "si crea un mapa de cobertura terrestre con sólo clases forestales y no forestales, la precisión de cada una de esas clases será mayor que si se intenta dividir en otras clases. Este es un concepto importante para comprender cuando se está desarrollando un sistema de clasificación para un mapa de cobertura terrestre."</i><cite href="#ref4">9</cite>. Se seleccionan categorías con un nivel de detalle tres según lo planteado en la Leyenda nacional de coberturas.</p>
       <table id="tablefreq">
         <caption>Categorías de interés seleccionadas y unidades de cobertura</caption>
         <thead>
@@ -206,7 +205,7 @@
         </tbody>
       </table>
       <h2>Selección de polígonos de entrenamiento y polígonos de validación</h2>
-      <p>Se determinaron los polígonos de entrenamiento a través de un análisis visual comparando la Cobertura de la Tierra Metodología CORINE Land Cover adaptada para Colombia durante el periodo 2010-2012 y la imágen. Adicionalmente se realizó una validación  a través de la herramienta Google Street View para algunos polígonos donde dicha herramienta tenía disponibilidad.  </p>
+      <p>Se determinan los polígonos de entrenamiento a través de un análisis visual comparando "Cobertura de la Tierra Metodología CORINE Land Cover adaptada para Colombia durante el periodo 2010-2012" y la imágen que representa los datos de reflectancia. Adicionalmente se realiza una validación  a través de la herramienta Google Street View para algunos polígonos donde dicha herramienta ofrece información.  </p>
       <figure style="float: column-bottom;">
 
         <image style="width:800px;" src="./img/maps/polygons.png"/>
@@ -217,23 +216,22 @@
 
         <image style="width:800px;" src="./img/maps/gsva.png"/>
 
-        <figcaption style="text-align: left;">Validación visual de polígono de categor cultivos permanentes arbustivos. Se observa café con sombrío.</figcaption>
+        <figcaption style="text-align: left;">Validación visual de polígono de categoría cultivos permanentes arbustivos. Se observa café con sombrío.</figcaption>
       </figure>
 
       <p>Los datos fueron preprocessados usando el Notebook <a href="notebooks/preprocess.html"> Preprocesamiento</a></p>
 
       <h2>Evaluación de la separabilidad espectral de las clases de interés</h2>
-      <p>Para evaluar la separabilidad de las clases se usó la distancia de Mahalanobis. Ya que acuerdo con lo que plantea (Wills, Napier-Munn, Wills, & Napier-Munn)<cite href="mahalanovis1">10</cite> "Otras estadísticas de separación de clases consideran la distribución de valores alrededor de los centros de clase. Por ejemplo, la distancia de Mahalanobis. La cuál se puede calcular como:" </p>
+      <p>Para evaluar la separabilidad de las clases se usa la distancia de Mahalanobis. Ya que de acuerdo con (Wills, Napier-Munn, Wills, & Napier-Munn)<cite href="mahalanovis1">10</cite> "Otras estadísticas de separación de clases consideran la distribución de valores alrededor de los centros de clase, por ejemplo la distancia de Mahalanobis. La cuál se puede calcular como:" </p>
       <div class="equation">
         <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
         <mrow><msub><mrow><mi>d</mi></mrow><mrow><mrow><mi>p</mi></mrow></mrow></msub><mo>(</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>i</mi></mrow></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>j</mi></mrow></mrow></msub><mo>)</mo><mo>=</mo><msqrt><mrow><mrow><msup><mrow><mrow><mo>(</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>i</mi></mrow></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>k</mi></mrow></mrow></msub><mo>)</mo></mrow></mrow><mrow><mrow><mi>T</mi></mrow></mrow></msup><msup><mrow><mrow><mi>W</mi></mrow></mrow><mrow><mrow><mo>-</mo><mn>1</mn></mrow></mrow></msup><mo>(</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>i</mi></mrow></mrow></msub><mo>-</mo><msub><mrow><mi>x</mi></mrow><mrow><mrow><mi>j</mi></mrow></mrow></msub><mo>)</mo></mrow></mrow></msqrt></mrow></math>
 
-      <p style="text-align:left;">Dónde: </p>
 
       <p style="text-align:left;"><b>W-1 =</b> Es la inversa de la matriz de covarianza</p>
 
       </div>
-<p>Las distancias de Mahalanobis entre clases fueron calculadas usando el Notebook <a href="notebooks/separability.html"> Separabilidad de Clases</a></p>
+<p>Las distancias de Mahalanobis se calculan usando el Notebook <a href="notebooks/separability.html"> Separabilidad de Clases</a></p>
 <table id="separability">
   <caption>Distancia Mahalanobis entre clases</caption>
   <thead>
@@ -333,7 +331,6 @@
     </tr>
   </tbody>
 </table>
-<p style="text-align:left;">Dónde: </p>
 
 <p style="text-align:left;"><b>1 =</b>Lagunas, lagos y ciénagas naturales</p>
 <p style="text-align:left;"><b>2 =</b>Arbustal abierto</p>
@@ -343,15 +340,15 @@
 <p style="text-align:left;"><b>6 =</b>Tejido urbano continuo</p>
 <p style="text-align:left;"><b>7 =</b>Pastos limpios</p>
 
-<p>Las clases que presentan mayor separabilidad son: Lagunas, lagos y ciénagas naturales con respecto a Mosaico de pastos y cultivos. Así mismo Mosaico de pastos y cultivos con Tejido urbano continuo con una distancia de 3.46.El par de clases que presenta menos separabilidad es  Cultivos permanentes arbustivos y Mosaico de cultivos, pastos y espacios naturales con una distancia de 1.45.</p>
+<p>Las clases que presentan mayor separabilidad son: "Lagunas, lagos y ciénagas naturales" con respecto a "Mosaico de pastos y cultivos" así mismo, "Mosaico de pastos y cultivos" con "Tejido urbano continuo" con una distancia de 3.46. El par de clases que presenta menos separabilidad es  "Cultivos permanentes arbustivos" y "Mosaico de cultivos, pastos y espacios naturales" con una distancia de 1.45.</p>
 
 
       <h2>Selección del método de clasificación y algoritmo de decisión</h2>
 
-      <p>Se usó un método de clasificación supervisado. "El modelo de aprendizaje supervisado supone la disponibilidad de un maestro o supervisor que clasifica los ejemplos de entrenamiento en clases y utiliza el información sobre la clase de cada instancia de entrenamiento" (Sathya & Abraham)<cite href="supervised">11</cite></p>
-      <p>Se implementó el algoritmo Random Forest usando un paquete de software en lenguaje Python llamado SciKit Learn .</p>
+      <p>Se usa un método de clasificación supervisado. "El modelo de aprendizaje supervisado asume la disponibilidad de un maestro o supervisor que clasifica los ejemplos de entrenamiento en clases y utiliza la información de cada instancia de entrenamiento" (Sathya & Abraham)<cite href="supervised">11</cite></p>
+      <p>Se implementa el algoritmo Random Forest usando un paquete de software en lenguaje Python llamado SciKit-Learn .</p>
       <p>El algoritmo fué implementado en el Notebook <a href="notebooks/classification.html"> Clasificación Supervisada</a></p>
-      <p>Las variables o los parámetros que se definieron para el algoritmo fueron las bandas de la imágen RED, GREEN, BLUE, NIR y el Índice NDVI.</p>
+      <p>Las variables o los parámetros que se definieron para el algoritmo fueron las bandas de la imágen RED, GREEN, BLUE, NIR y el índice NDVI.</p>
 <section>
 <h1>Presentación de resultados</h1>
 
@@ -381,12 +378,12 @@
     </tr>
 
     <tr>
-      <td >Banda NDVI</td>
+      <td >Banda NIR</td>
       <td >0.12</td>
     </tr>
 
     <tr>
-      <td >Índice NDVI</td>
+      <td >Indice NDVI</td>
       <td>0.10</td>
     </tr>
     </tr>
@@ -600,12 +597,12 @@
 <section>
 <h1>Análisis de resultados</h1>
 <p>Se evidencia que la banda que más aporta información al algoritmo es la Banda GREEN con una importancia de 0.24
-. La que menos aporta es el índice NDVI con un 0.10.En algunos métodos de clasificación se usan índices para reducir la dimensionalidad de la información. En este caso el índice NDVI usado fué el que menos información aportó al modelo.</p>
+. La que menos aporta es el índice NDVI con un 0.10. En algunos métodos de clasificación se usan índices para reducir la dimensionalidad de la información, en este caso el índice NDVI aporta  menos información al modelo.</p>
 
-<p>El algoritmo presenta un porcentaje de clasificación correcta del 62.89% sin embargo, las clases que presentaron mejor porcentaje correcto de clasificación fueron Lagunas, lagos y ciénagas naturales, Tejido urbano continuo y Arbustal Abierto con valores 99.07%, 87.08% y 77.30% respectivamente. La que menos tuvo fué Pastos limpio con un valor de 30.72%.</p>
+<p>El algoritmo presenta un porcentaje de clasificación correcta del 62.89% sin embargo, las clases que presentaron mejor porcentaje de clasificación correcto fueron "Lagunas, lagos y ciénagas naturales", "Tejido urbano continuo" y "Arbustal Abierto" con valores 99.07%, 87.08% y 77.30% respectivamente. "Pastos limpios" presentó el menor porcentaje de clasificación de 30.72%.</p>
 
-<p>Las clases que tuvieron las distancias de Mahalanobis más cercanas entre sí muestran un gran porcentaje de error clasificado en la matriz de confusión. Por ejemplo las clases Cultivos permanentes arbustivos y Mosaico de cultivos, pastos y espacios naturales con una distancia de 1.45 así mismo, las distancias de Mahalanobis mayores reflejan un menor porcentaje de clasificación errónea entre ellas. Es el caso de Lagunas, lagos y ciénagas naturales y Tejido urbano continuo con una distancia de 3.46.</p>
-<p>Se evidencia a través de un análisis visual la gran cantidad de concentración de clases de tipo "Cultivos permanentes arbustivos" y "Mosaico de cultivos, pastos y espacios naturales" en las veredas cafeteras de Socorro Santander (parte alta del municipio). En total 6'465.642 pixeles que reflejan un área de 5819.01 ha. Según el conjunto de datos Cadena Productiva Café - Area, Produccion y rendimiento  publicada por el Ministerio de Agricultura y desarrollo Rural para el socorro en el año 2015 el área sembrada de café fué de 4099ha<cite href="minag">12</cite></p>
+<p>Las clases cuyas distancias  de Mahalanobis  se encuentran más cercanas entre sí presentan un gran porcentaje de error clasificado en la matriz de confusión. Por ejemplo las clases "Cultivos permanentes arbustivos" y "Mosaico de cultivos, pastos y espacios naturales" con una distancia de 1.45, así mismo, las distancias de Mahalanobis mayores reflejan un menor porcentaje de clasificación errónea entre ellas. Es el caso de "Lagunas, lagos y ciénagas naturales" y "Tejido urbano continuo" con una distancia de 3.46.</p>
+<p>Estableciendo los polígonos que describen la región cafetera del municipio se evidencia gran concentración de clases tipo "Cultivos permanentes arbustivos" y "Mosaico de cultivos, pastos y espacios naturales". En total 6'465.642 pixeles que reflejan un área aproximada de 5819.01 ha. Según el conjunto de datos Cadena Productiva Café - Area, Produccion y rendimiento  publicada por el Ministerio de Agricultura y desarrollo Rural para el socorro en el año 2015 el área sembrada de café fue de 4099ha<cite href="minag">12</cite></p>
 <figure style="float: column-bottom;">
   <image style="width:800px;" src="./img/maps/cassification-cafe.png"/>
 
@@ -615,9 +612,9 @@
 <section>
 <h1>Conclusiones</h1>
 <ul>
-<li>Es importante evaluar la importancia de las clases en un modelo de clasificación ya que, en algunos casos se puede destinar mucho esfuerzo en agregar información paramétrica relevante al modelo que no aporta información.</li>
-<li>Las medidas de separabilidad entre clases  polígonos de entrenamiento en un modelo de clasificación permiten conocer si una clase va a tener una predicción errónea con respecto a otra. Entre más cercanas estan los datos de una clase con respecto a otra más errores de predicción se presentan.</li>
-<li>Evaluar la cobertura del suelo en Socorro santander con este tipo de imágenes permite monitorear  el área de producción de café, una de las actividades económicas representativas de la zona. </li>
+<li>Es relevante evaluar la importancia de las variables en un modelo de clasificación ya que, en algunos casos algunos parámetros no proporcionan información relevante al modelo.</li>
+<li>Las medidas de separabilidad entre polígonos de entrenamiento en un modelo de clasificación permiten conocer si una clase va a tener una predicción errónea con respecto a otra. Entre más cercanas estan los datos de una clase con respecto a otra más errores de predicción se presentan.</li>
+<li>Evaluar la cobertura del suelo en Socorro santander con este tipo de imágenes permite monitorear  el área de producción de café, una de las actividades económicas representativas de la región. </li>
 
 </ul>
 </section>
