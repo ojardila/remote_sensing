@@ -112,7 +112,7 @@
         <figcaption style="text-align: left;">Localización de la Zona de estudio. Municipio Socorro en el departamento de Santander.</figcaption>
       </figure>
       <h2>Fuente de datos y preprocesamiento</h2>
-      <p>Se tomaron las imágenes con identificación 20171220_143931_1024, 20171220_143932_1024, 20171220_143933_1024, 20171220_143933_1024 del programa satelital <a href="https://planet.com">Planet</a>. Las imágenes son de tipo PlanetScope con una resolución espacial de 3 metros y con una fecha de adquisición del 20 de Diciembre del 2017 14:30:32 UTC.</p>
+      <p>Tomando las imágenes con identificación 20171220_143931_1024, 20171220_143932_1024, 20171220_143933_1024, 20171220_143933_1024 del programa satelital <a href="https://planet.com">Planet</a>. Las imágenes son de tipo PlanetScope con una resolución espacial de 3 metros y con una fecha de adquisición del 20 de Diciembre del 2017 14:30:32 UTC.</p>
       <p>Se realiza una corrección radiométrica para el cálculo de la reflectancia tipo DOS usando el modelo propuesto por <em>Chaves</em> <cite href="#chav1">4</cite></p>
       <div class="equation">
         <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
@@ -219,7 +219,7 @@
         <figcaption style="text-align: left;">Validación visual de polígono de categoría cultivos permanentes arbustivos. Se observa café con sombrío.</figcaption>
       </figure>
 
-      <p>Los datos fueron preprocessados usando el Notebook <a href="notebooks/preprocess.html"> Preprocesamiento</a></p>
+      <p>Los datos se preprocesan usando el Notebook <a href="notebooks/preprocess.html"> Preprocesamiento</a></p>
 
       <h2>Evaluación de la separabilidad espectral de las clases de interés</h2>
       <p>Para evaluar la separabilidad de las clases se usa la distancia de Mahalanobis. Ya que de acuerdo con (Wills, Napier-Munn, Wills, & Napier-Munn)<cite href="mahalanovis1">10</cite> "Otras estadísticas de separación de clases consideran la distribución de valores alrededor de los centros de clase, por ejemplo la distancia de Mahalanobis. La cuál se puede calcular como:" </p>
@@ -347,8 +347,8 @@
 
       <p>Se usa un método de clasificación supervisado. "El modelo de aprendizaje supervisado asume la disponibilidad de un maestro o supervisor que clasifica los ejemplos de entrenamiento en clases y utiliza la información de cada instancia de entrenamiento" (Sathya & Abraham)<cite href="supervised">11</cite></p>
       <p>Se implementa el algoritmo Random Forest usando un paquete de software en lenguaje Python llamado SciKit-Learn .</p>
-      <p>El algoritmo fué implementado en el Notebook <a href="notebooks/classification.html"> Clasificación Supervisada</a></p>
-      <p>Las variables o los parámetros que se definieron para el algoritmo fueron las bandas de la imágen RED, GREEN, BLUE, NIR y el índice NDVI.</p>
+      <p>Se implementa el algoritmo en el Notebook <a href="notebooks/classification.html"> Clasificación Supervisada</a></p>
+      <p>Las variables o los parámetros que se definen como parámetros son las bandas de la imágen RED, GREEN, BLUE, NIR y el índice NDVI.</p>
 <section>
 <h1>Presentación de resultados</h1>
 
@@ -599,7 +599,7 @@
 <p>Se evidencia que la banda que más aporta información al algoritmo es la Banda GREEN con una importancia de 0.24
 . La que menos aporta es el índice NDVI con un 0.10. En algunos métodos de clasificación se usan índices para reducir la dimensionalidad de la información, en este caso el índice NDVI aporta  menos información al modelo.</p>
 
-<p>El algoritmo presenta un porcentaje de clasificación correcta del 62.89% sin embargo, las clases que presentaron mejor porcentaje de clasificación correcto fueron "Lagunas, lagos y ciénagas naturales", "Tejido urbano continuo" y "Arbustal Abierto" con valores 99.07%, 87.08% y 77.30% respectivamente. "Pastos limpios" presentó el menor porcentaje de clasificación de 30.72%.</p>
+<p>El algoritmo presenta un porcentaje de clasificación correcta del 62.89% sin embargo, las clases que presentan mejor porcentaje de clasificación correcto son "Lagunas, lagos y ciénagas naturales", "Tejido urbano continuo" y "Arbustal Abierto" con valores 99.07%, 87.08% y 77.30% respectivamente. "Pastos limpios" presentó el menor porcentaje de clasificación de 30.72%.</p>
 
 <p>Las clases cuyas distancias  de Mahalanobis  se encuentran más cercanas entre sí presentan un gran porcentaje de error clasificado en la matriz de confusión. Por ejemplo las clases "Cultivos permanentes arbustivos" y "Mosaico de cultivos, pastos y espacios naturales" con una distancia de 1.45, así mismo, las distancias de Mahalanobis mayores reflejan un menor porcentaje de clasificación errónea entre ellas. Es el caso de "Lagunas, lagos y ciénagas naturales" y "Tejido urbano continuo" con una distancia de 3.46.</p>
 <p>Estableciendo los polígonos que describen la región cafetera del municipio se evidencia gran concentración de clases tipo "Cultivos permanentes arbustivos" y "Mosaico de cultivos, pastos y espacios naturales". En total 6'465.642 pixeles que reflejan un área aproximada de 5819.01 ha. Según el conjunto de datos Cadena Productiva Café - Area, Produccion y rendimiento  publicada por el Ministerio de Agricultura y desarrollo Rural para el socorro en el año 2015 el área sembrada de café fue de 4099ha<cite href="minag">12</cite></p>
